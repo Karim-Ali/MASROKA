@@ -101,6 +101,8 @@ public class validate_data {
         {
             System.out.println(ex);
         } 
+        if(Email.equals("")||password.equals(""))
+        {res=false;}
       return res;
     }
      

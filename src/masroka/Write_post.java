@@ -13,13 +13,9 @@ import java.util.ArrayList;
  */
 public class Write_post {
     public static int id=1;
-    public String addQuestion(ArrayList <String> quest)
+    public String addQuestion(String quest)
     {
-       String con="";
-        for(int i=0;i<quest.size();i++)
-       {
-           con+=quest.get(i);
-       }
+       String con=quest;
         return con;
     }
     public String addDescreption(String desc)

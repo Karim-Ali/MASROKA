@@ -5,6 +5,11 @@
  */
 package masroka;
 
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author esam
@@ -14,8 +19,16 @@ public class search extends javax.swing.JFrame {
     /**
      * Creates new form search
      */
+    private String username;
+    private ArrayList<String> n=new ArrayList<String>();
+    private int cur;
     public search() {
         initComponents();
+        username = "";
+    }
+    public search(String user) {
+        initComponents();
+        username =  user;
     }
 
     /**
@@ -27,7 +40,7 @@ public class search extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -45,13 +58,13 @@ public class search extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        name.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 107, 345, -1));
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 107, 345, -1));
 
         jButton1.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton1.setText("<<Post");
@@ -64,6 +77,11 @@ public class search extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
@@ -82,6 +100,11 @@ public class search extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton4.setText("Next");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
         desc.setColumns(20);
@@ -124,13 +147,13 @@ public class search extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        post p = new post();
+        post p = new post(username);
         p.setLocation(380, 200);
         this.setVisible(false);
         p.setVisible(true);
@@ -138,6 +161,19 @@ public class search extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        if(n.size()>0)
+        {
+            if(cur!=0){
+                cur--;
+                String[] n1 = n.get(cur).split("#");
+                ques.setText(n1[6]);
+                desc.setText(n1[5]);
+            }
+            else
+                JOptionPane.showMessageDialog(null,"no more items.","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(null,"ensure inserting data.","Error",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -147,6 +183,44 @@ public class search extends javax.swing.JFrame {
         this.setVisible(false);
         m.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(name.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"ensure inserting data.","Error",JOptionPane.INFORMATION_MESSAGE);
+        else{
+            
+            Search_db s=new Search_db();
+            n=s.SearchByName(name.getText());
+            if(n.size()>0){
+                String[] n1 = n.get(0).split("#");
+                ques.setText(n1[6]);
+                desc.setText(n1[5]);
+                image.setText("");
+//                String imageLocation = toString(n[4]);
+//                image.setIcon(new ImageIcon(imageLocation));
+                cur = 0;
+            }
+            else
+                JOptionPane.showMessageDialog(null,"Item not found.","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if(n.size()>0)
+        {
+            if(cur < n.size()-1){
+                cur++;
+                String[] n1 = n.get(cur).split("#");
+                ques.setText(n1[6]);
+                desc.setText(n1[5]);
+            }
+            else
+                JOptionPane.showMessageDialog(null,"no more items.","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+            JOptionPane.showMessageDialog(null,"ensure inserting data.","Error",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,7 +270,7 @@ public class search extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField name;
     private javax.swing.JTextArea ques;
     // End of variables declaration//GEN-END:variables
 }
