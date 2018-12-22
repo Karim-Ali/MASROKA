@@ -5,6 +5,8 @@
  */
 package masroka;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author esam
@@ -149,10 +151,19 @@ public class signup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        post p = new post();
-        p.setLocation(380, 200);
-        this.setVisible(false);
-        p.setVisible(true);
+        validate_data v=new validate_data();
+        if(v.check_email(emal.getText())&&pass1.getText().equals(pass2.getText())&&v.check_pass(pass1.getText())&&v.check_phone(phone.getText()))
+        {
+            UserDB u= new UserDB();
+            u.insertDB(emal.getText(), user_name.getText(), pass1.getText(), address.getText(), phone.getText());
+            post p = new post(emal.getText());
+            p.setLocation(380, 200);
+            this.setVisible(false);
+            p.setVisible(true);
+        }
+        else 
+            JOptionPane.showMessageDialog(null,"Plase follow the instructions.","Error",JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

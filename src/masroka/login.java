@@ -5,6 +5,8 @@
  */
 package masroka;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author esam
@@ -41,7 +43,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("User Name : ");
+        jLabel1.setText("E-mail  : ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 82, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
@@ -77,10 +79,18 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        post p = new post();
-        p.setLocation(380, 200);
-        this.setVisible(false);
-        p.setVisible(true);
+        validate_data v1=new validate_data();
+        
+       if(v1.validate_logIN(jTextField1.getText(), jPasswordField1.getText()))
+       {
+            post p = new post(jTextField1.getText());
+            p.setLocation(380, 200);
+            this.setVisible(false);
+            p.setVisible(true);
+       }
+       else
+            JOptionPane.showMessageDialog(null,"Invalid E-mail or password.","Error",JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

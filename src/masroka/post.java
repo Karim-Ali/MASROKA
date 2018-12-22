@@ -6,6 +6,7 @@
 package masroka;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +17,14 @@ public class post extends javax.swing.JFrame {
     /**
      * Creates new form post
      */
+    private String username;
     public post() {
         initComponents();
+        username = "";
+    }
+    public post(String user) {
+        initComponents();
+        username = user;
     }
 
     /**
@@ -40,6 +47,8 @@ public class post extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,7 +102,7 @@ public class post extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 58, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Pristina", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,6 +118,19 @@ public class post extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 343, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Type : ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, -1));
+
+        name.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 250, -1));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/masroka/post.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -118,12 +140,25 @@ public class post extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JFileChooser j = new JFileChooser();
-        j.showOpenDialog(null);
+        j.showOpenDialog(null);        
+        if(Ques.getText().equals("") || desc.getText().equals("")||name.getText().equals(""))
+            JOptionPane.showMessageDialog(null,"ensure inserting data.","Error",JOptionPane.INFORMATION_MESSAGE);
+        else
+        {
+            Write_post w=new Write_post();
+            post_db p=new post_db();
+            Search_db s=new Search_db();
+            p.insertDB(w.setID()+"",username,name.getText(), s.getAddress(username),j.getSelectedFile().getAbsolutePath(), w.addDescreption(desc.getText()),w.addQuestion(Ques.getText()));
+            JOptionPane.showMessageDialog(null,"post uploded sucessfully.","complete",JOptionPane.INFORMATION_MESSAGE);
+            Ques.setText("");
+            desc.setText("");
+            name.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        search s = new search();
+        search s = new search(username);
         s.setLocation(380, 200);
         this.setVisible(false);
         s.setVisible(true);
@@ -136,6 +171,10 @@ public class post extends javax.swing.JFrame {
         this.setVisible(false);
         m.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,7 +222,9 @@ public class post extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField name;
     // End of variables declaration//GEN-END:variables
 }
