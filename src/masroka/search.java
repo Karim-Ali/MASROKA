@@ -64,11 +64,11 @@ public class search extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton2.setText("Search");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 109, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Type : ");
+        jLabel1.setText("Name : ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 113, 55, -1));
 
         jButton3.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
@@ -82,7 +82,7 @@ public class search extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton4.setText("Next");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 350, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, -1, -1));
 
         desc.setColumns(20);
         desc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -116,7 +116,7 @@ public class search extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 350, -1, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/masroka/search.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

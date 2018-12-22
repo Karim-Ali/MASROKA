@@ -84,7 +84,7 @@ public class post extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 343, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Pristina", 1, 18)); // NOI18N
         jButton2.setText("Search>>");

@@ -134,7 +134,7 @@ public class signup extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Pristina", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Sign In");
+        jLabel10.setText("Sign Up");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 11, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/masroka/sign.jpg"))); // NOI18N
