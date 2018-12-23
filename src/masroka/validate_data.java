@@ -36,6 +36,10 @@ public class validate_data {
     }
     return res;
     }
+    public void send_email()
+    {
+        
+    }
     public boolean check_pass(String password)
     {
         boolean res=true;

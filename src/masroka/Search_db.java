@@ -74,4 +74,21 @@ public class Search_db {
       return arr;
     }
     
+    public void serch_by_address()
+    {
+        
+    }
+    public void serch_by_type()
+    {
+        
+    }
+    public void serch_by_name()
+    {
+        
+    }
+    public void getPostID()
+    {
+        
+    }
+    
 }
