@@ -29,5 +29,13 @@ public class Write_post {
         id++;
         return num;
     }
+    public void addPhoto()
+    {
+        
+    }
+    public void addQuestion()
+    {
+        
+    }
     
 }
